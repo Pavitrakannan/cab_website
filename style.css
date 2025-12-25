@@ -1,0 +1,65 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+body { background: #000; color: #fff; overflow-x: hidden; }
+
+/* REUSABLE LAYOUT */
+.section-margin { margin-bottom: 150px; }
+.container { max-width: 1200px; margin: 0 auto; width: 90%; }
+.gold { color: #d4af37; }
+
+/* TOP RIGHT NAVIGATION RIBBON */
+.navbar { display: flex; justify-content: space-between; align-items: center; padding: 30px 5%; background: #000; }
+.company-logo-giant { font-size: 2.5rem; font-weight: 900; letter-spacing: 2px; }
+.menu a { 
+    color: #fff; 
+    text-decoration: none; 
+    margin-left: 35px; 
+    font-weight: 800; 
+    font-size: 1.6rem; 
+    text-transform: uppercase;
+}
+
+/* HERO */
+.hero { height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.7), #000), url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1200&q=80') center/cover; }
+.hero h1 { font-size: 5rem; margin-bottom: 20px; }
+.booking-card { background: rgba(255,255,255,0.1); padding: 40px; border-radius: 20px; display: flex; gap: 15px; border: 1px solid #333; }
+.booking-card input { padding: 20px; flex: 1; border-radius: 10px; border: none; font-size: 1.2rem; }
+.booking-card button { background: #d4af37; padding: 0 40px; border: none; font-weight: bold; border-radius: 10px; cursor: pointer; font-size: 1.1rem; }
+
+/* HOW TO BOOK ALIGNMENT */
+.flex-row { display: flex; align-items: center; gap: 60px; }
+.col-img, .col-text { flex: 1; }
+.col-img img { width: 100%; border-radius: 30px; }
+.step-card { display: flex; gap: 25px; margin-bottom: 40px; }
+.step-no { font-size: 4rem; font-weight: bold; color: #d4af37; opacity: 0.5; }
+.side-header-large { font-size: 4rem; margin-bottom: 60px; text-transform: uppercase; }
+.center { text-align: center; }
+
+/* CONTACT GRID */
+.contact-grid-fixed { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.contact-item { background: #111; padding: 60px 20px; border-radius: 25px; text-align: center; border: 1px solid #222; text-decoration: none; color: #fff; transition: 0.3s; }
+.contact-item:hover { border-color: #d4af37; transform: translateY(-10px); }
+.giant-icon { font-size: 5.5rem; margin-bottom: 25px; }
+.blue { color: #3498db; } .green { color: #25d366; } .insta { color: #e1306c; }
+.white-header { font-size: 2.2rem; margin-bottom: 10px; }
+
+/* FULL WIDTH CENTERED MAP */
+.full-map-container { width: 100%; padding: 0 5%; }
+.map-wrapper-giant { width: 100%; height: 600px; border-radius: 30px; overflow: hidden; border: 5px solid #111; }
+.map-wrapper-giant iframe { width: 100%; height: 100%; border: none; }
+
+/* FAQ - MASSIVE FONTS */
+.faq-container { max-width: 1000px; margin: 0 auto; }
+.faq-item { background: #fff; color: #000; border-radius: 25px; margin-bottom: 30px; overflow: hidden; cursor: pointer; }
+.faq-header { padding: 45px; display: flex; justify-content: space-between; align-items: center; font-size: 2.5rem; font-weight: 900; }
+.plus-btn { background: #ccff00; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem; transition: 0.4s; }
+.faq-content { padding: 0 45px; max-height: 0; transition: 0.5s ease; font-size: 1.6rem; color: #444; }
+.faq-item.active .faq-content { padding-bottom: 45px; max-height: 500px; }
+.faq-item.active .plus-btn { transform: rotate(45deg); background: #ff4500; color: #fff; }
+
+/* FOOTER */
+.footer { padding: 50px; text-align: center; border-top: 1px solid #222; font-size: 1.2rem; opacity: 0.6; }
+
+/* POPUP */
+.popup-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 9999; }
+.compact-view { background: #fff; color: #000; width: 450px; padding: 40px; border-radius: 30px; position: relative; }
+.close-container { position: absolute; top: -20px; right: -20px; background: #000; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #fff; font-size: 2rem; }
