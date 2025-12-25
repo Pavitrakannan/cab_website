@@ -1,0 +1,37 @@
+Premium Cabs Web Platform
+A high-end, professional web application for premium transport solutions. This project features a luxury dark-theme UI, interactive FAQ systems, and a high-conversion booking assistance popup.
+
+🛠 Features
+Luxury Popup: Modern "Booking Assistance" interface with agent contact and discount code logic.
+
+Interactive FAQ: Smooth, large-font accordion system for customer queries.
+
+Contact Hub: High-visibility grid for Phone, WhatsApp, and Instagram integration.
+
+Integrated Maps: Full-width, centered Google Maps for location transparency.
+
+💻 Local Setup Instructions
+1. Requirements
+  Python 3.x installed.
+  Flask framework.
+
+2. Installation
+  Open your terminal or command prompt and run:
+  Bash:  pip install flask
+
+3. File Organization
+  Ensure your directory looks exactly like this:
+  project-folder/
+  ├── app.py
+  ├── static/
+  │   └── style.css
+  └── templates/
+      └── index.html
+
+4. Execution
+  Run the server with the following command:
+  Bash: python app.py
+
+5. Viewing the Site
+  Open your browser and navigate to:http://127.0.0.1:5000
+
