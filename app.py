@@ -5,43 +5,44 @@ import os
 app = Flask(__name__)
 app.secret_key = 'premium_cabs_secret'
 
-# --- DATABASE OF VEHICLES (DYNAMIC DATA) ---
+# --- DATABASE OF VEHICLES (FIXED IMAGES) ---
 cars = [
     {
         'id': 1,
+        'name': 'Hatchback',
+        'model': 'Maruti Swift / Celerio',
+        # Using reliable Wikimedia/Public placeholder images
+        'image': 'https://imgd.aeplcdn.com/600x337/n/cw/ec/102663/baleno-exterior-right-front-three-quarter-69.png?isig=0&q=80',
+	'rate': '₹10',
+        'capacity': '4 Seater',
+        'features': ['AC', 'Compact', 'Budget Friendly']
+    },
+    {
+        'id': 2,
         'name': 'Sedan Premium',
         'model': 'Swift Dzire / Etios',
-        'image': 'https://imgd.aeplcdn.com/370x208/n/cw/ec/45691/swift-exterior-right-front-three-quarter-118.jpeg',
+        'image': 'https://www.timesbull.com/wp-content/uploads/2024/10/Exploring-the-Best-Sedan-Cars-in-India-Comfort-Performance-and-Affordability-jpg.webp',
         'rate': '₹12',
         'capacity': '4 Seater',
         'features': ['AC', 'Music System', 'Ample Boot Space']
     },
     {
-        'id': 2,
+        'id': 3,
         'name': 'SUV Comfort',
         'model': 'Maruti Ertiga / Kia Carens',
-        'image': 'https://imgd.aeplcdn.com/370x208/n/cw/ec/115457/ertiga-facelift-exterior-right-front-three-quarter.jpeg',
+        'image': 'https://images.drivespark.com/webp/fit-in/510x383/car-image/car/1040807-hyundai_creta.jpg',
         'rate': '₹15',
         'capacity': '6 Seater',
         'features': ['AC', 'Reclining Seats', 'Extra Legroom']
     },
     {
-        'id': 3,
+        'id': 4,
         'name': 'SUV Luxury',
         'model': 'Toyota Innova Crysta',
-        'image': 'https://imgd.aeplcdn.com/370x208/n/cw/ec/136217/innova-crysta-exterior-right-front-three-quarter-3.jpeg',
+        'image': 'https://imgd.aeplcdn.com/642x336/n/cw/ec/115025/innova-hycross-exterior-right-front-three-quarter-74.png?isig=0&q=80',
         'rate': '₹18',
         'capacity': '7 Seater',
         'features': ['Dual AC', 'Leather Seats', 'Premium Audio']
-    },
-    {
-        'id': 4,
-        'name': 'Tempo Traveller',
-        'model': 'Force Traveller',
-        'image': 'https://5.imimg.com/data5/SELLER/Default/2023/1/YI/IO/MI/23366886/17-seater-tempo-traveller-rental-service-500x500.png',
-        'rate': '₹24',
-        'capacity': '17 Seater',
-        'features': ['Pushback Seats', 'Individual AC', 'Group Travel']
     }
 ]
 
@@ -50,9 +51,9 @@ def save_to_csv(data):
     file_exists = os.path.isfile('bookings.csv')
     with open('bookings.csv', mode='a', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
-        # Add header if the file is being created for the first time
         if not file_exists:
-            writer.writerow(['Phone', 'Pickup', 'Drop'])
+            # Updated Headers
+            writer.writerow(['Trip Type', 'Name', 'Phone', 'Pickup State', 'Pickup Address', 'Drop State', 'Drop Address'])
         writer.writerow(data)
 
 @app.route('/')
@@ -61,19 +62,20 @@ def home():
 
 @app.route('/book', methods=['POST'])
 def book_cab():
-    # 1. Capture data from the form
+    # Capture all new fields
+    trip_type = request.form.get('trip_type')
+    name = request.form.get('name')
     phone = request.form.get('phone')
-    pickup = request.form.get('pickup')
-    drop = request.form.get('drop')
+    pickup_state = request.form.get('pickup_state')
+    pickup_address = request.form.get('pickup_address')
+    drop_state = request.form.get('drop_state')
+    drop_address = request.form.get('drop_address')
     
-    # 2. Save data permanently to the CSV file
-    save_to_csv([phone, pickup, drop])
+    # Save to CSV
+    save_to_csv([trip_type, name, phone, pickup_state, pickup_address, drop_state, drop_address])
     
-    # 3. Print to console for immediate visibility
-    print(f"--- NEW BOOKING SAVED ---")
-    print(f"Phone: {phone} | Route: {pickup} to {drop}")
+    print(f"--- NEW BOOKING: {name} ({phone}) ---")
     
-    # 4. Show success message
     flash('Booking request saved! Our agent will call you shortly.')
     return redirect(url_for('home'))
 
